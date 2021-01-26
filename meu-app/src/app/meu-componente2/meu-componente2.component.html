@@ -1,1 +1,9 @@
-<p>meu-componente2 works!</p>
+meu-componente2 works! {{ nome.toUpperCase() }}
+<br />
+{{ 5+3 }}
+<br />
+{{ Aluno.dados.nome }}
+
+<!-- Utilização do operador Elvis(?) -->
+<!-- Para evitar o trabalho de ter que ficar verificando cada uma das propriedades até chegar na propriedade desejada, podemos utilizar o chamado "operador elvis". -->
+{{ Aluno?.dados?.nome }}
