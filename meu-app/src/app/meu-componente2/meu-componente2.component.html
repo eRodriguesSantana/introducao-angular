@@ -1,9 +1,5 @@
-meu-componente2 works! {{ nome.toUpperCase() }}
-<br />
-{{ 5+3 }}
-<br />
-{{ Aluno.dados.nome }}
+<p *ngIf="isVisible; else condicaoFalsa">{{ Aluno?.dados?.nome }}</p>
 
-<!-- Utilização do operador Elvis(?) -->
-<!-- Para evitar o trabalho de ter que ficar verificando cada uma das propriedades até chegar na propriedade desejada, podemos utilizar o chamado "operador elvis". -->
-{{ Aluno?.dados?.nome }}
+<ng-template #condicaoFalsa>
+  <p>Outro texto</p>
+</ng-template>
