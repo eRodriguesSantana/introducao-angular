@@ -9,7 +9,7 @@ export class MeuComponente2Component implements OnInit {
 
   nome = "Eduardo";
   isVisible = false;
-
+  myValue = 3;
 
   Aluno =  {
    dados:   {
