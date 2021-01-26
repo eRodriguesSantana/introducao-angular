@@ -17,6 +17,8 @@ export class MeuComponente2Component implements OnInit {
    }   
   }
 
+  myList = [1,2,3,4,5];
+
   constructor() { }
 
   ngOnInit(): void {
