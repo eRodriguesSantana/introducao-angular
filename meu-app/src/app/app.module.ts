@@ -20,3 +20,4 @@ import { MeuComponente2Component } from './meu-componente2/meu-componente2.compo
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
