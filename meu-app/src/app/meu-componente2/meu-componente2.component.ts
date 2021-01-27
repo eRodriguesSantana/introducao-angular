@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { AlunosService } from './../services/alunos.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-meu-componente2',
@@ -12,8 +13,13 @@ export class MeuComponente2Component implements OnInit {
 
   nome = "Eduardo";
   alunos = [];
+  searchText = '';
+  projects = [];
 
-  constructor(private alunosService: AlunosService) {
+  constructor(
+    private alunosService: AlunosService,
+    private http: HttpClient
+  ) {
     this.alunos = this.alunosService.getAlunos();
   }
 
@@ -24,4 +30,15 @@ export class MeuComponente2Component implements OnInit {
     alert('Hi');
   }
 
+  getProjects() {
+    if(this.searchText) {
+      const url = `https://api.github.com/search/repositories?q=${this.searchText}`;
+       this.http.get(url)
+         .subscribe(
+           response => {
+	     this.projects = response['items'];
+           }
+         )
+     }
+   }
 }
