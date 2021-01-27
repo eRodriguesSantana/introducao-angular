@@ -3,6 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { AlunosService } from './../services/alunos.service';
 import { HttpClient } from '@angular/common/http';
 
+interface GithubResponse {
+  incomplete_result: boolean;
+  items: any[];
+  total_count: number;
+}
+
 @Component({
   selector: 'app-meu-componente2',
   templateUrl: './meu-componente2.component.html',
@@ -33,10 +39,10 @@ export class MeuComponente2Component implements OnInit {
   getProjects() {
     if(this.searchText) {
       const url = `https://api.github.com/search/repositories?q=${this.searchText}`;
-       this.http.get(url)
+       this.http.get<GithubResponse>(url)
          .subscribe(
            response => {
-	     this.projects = response['items'];
+	     this.projects = response.items;
            }
          )
      }
