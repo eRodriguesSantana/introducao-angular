@@ -9,19 +9,14 @@ export class MeuComponente2Component implements OnInit {
 
   nome = "Eduardo";
   isVisible = false;
-  myValue = 3;
-
-  Aluno =  {
-   dados:   {
-      nome: "Maria"
-   }   
-  }
-
-  myList = [1,2,3,4,5];
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  handleClick() {
+    alert('Hi');
   }
 
 }
