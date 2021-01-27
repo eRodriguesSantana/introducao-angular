@@ -8,7 +8,6 @@ import { Component, OnInit } from '@angular/core';
 export class MeuComponente2Component implements OnInit {
 
   nome = "Eduardo";
-  isVisible = false;
 
   constructor() { }
 
