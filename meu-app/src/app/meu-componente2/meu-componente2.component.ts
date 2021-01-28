@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
+import { takeWhile } from 'rxjs/operators';
 import { AlunosService } from './../services/alunos.service';
 import { ProjectsService } from './../services/projects.service';
 
@@ -9,12 +10,14 @@ import { ProjectsService } from './../services/projects.service';
   styleUrls: ['./meu-componente2.component.css'],
   providers: [AlunosService]
 })
-export class MeuComponente2Component implements OnInit {
+export class MeuComponente2Component implements OnInit, OnDestroy {
 
   nome = "Eduardo";
   alunos = [];
   projects = [];
   searchText = '';
+
+  isAlive = true;
 
   constructor(
     private alunosService: AlunosService,
@@ -24,12 +27,20 @@ export class MeuComponente2Component implements OnInit {
   }
 
   ngOnInit(): void {
-    this.projectsService.projects.subscribe(
+    this.projectsService.projects
+    .pipe(
+      takeWhile(() => this.isAlive)
+    )
+    .subscribe(
       projects => {
         this.projects = projects;
         this.handleClick();
       }
     )
+  }
+
+  ngOnDestroy() {
+    this.isAlive = false;
   }
 
   handleClick() {
