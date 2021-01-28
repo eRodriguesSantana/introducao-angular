@@ -25,6 +25,7 @@ export class ListComponent implements OnInit {
   constructor(private pokeApi: PokeapiService) { }
 
   ngOnInit(): void {
+    this.pokeApi.listAll();
   }
 
   selectPokemon(pkm) {
