@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { AlunosService } from './../services/alunos.service';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 
 interface GithubResponse {
   incomplete_result: boolean;
@@ -39,14 +39,27 @@ export class MeuComponente2Component implements OnInit {
   getProjects() {
     if(this.searchText) {
       const url = `https://api.github.com/search/repositories`;
+
+      /*Objeto imutavel, significa que no ato da instanciação deve atribuir seus valores*/
       const params = new HttpParams().set('q', this.searchText);
 
-       this.http.get<GithubResponse>(url, {params})
+      /*Objeto imutavel, significa que no ato da instanciação deve atribuir seus valores*/
+       const headers = new HttpHeaders().set('Content-Type', 'text/html');
+
+       this.http.get<GithubResponse>(url, {params, headers})
          .subscribe(
            response => {
 	     this.projects = response.items;
            }
          )
+
+        /*Exemplo de uso caso o verbo da requisição fosse POST, PUT ou DELETE
+        this.http.post<GithubResponse>(url, {objeto_enviado}, {params, headers})
+         .subscribe(
+           response => {
+	     this.projects = response.items;
+           }
+         )*/
      }
    }
 }
